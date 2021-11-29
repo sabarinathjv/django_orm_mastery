@@ -1,6 +1,6 @@
 from django.db import connection
 from rest_framework import generics
-from .models import Post , Student , Teacher , Product
+from .models import Post , Student , Teacher ,Mybook
 from .serializers import PostSerializer , UserSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authentication import TokenAuthentication
@@ -61,8 +61,13 @@ class Createuser(APIView):#2 #waste
         #quey filtering (usefull without using the serializer) can specify which dataa we need
         # posts = Student.objects.filter(classroom=1).only('firstname','age')
         #$$ using raw instead of filter we can get data using the Raw sql query
+        #from django.db.models import Sum, Max, Min, Avg 
+        #used for db total operation using aggregate
+        # product = Mybook.objects.all().aggregate(newname=Sum("cost"))#we can override the na e also
 
 #####################################orm explore
+#problem solution arised at product cupboard , book
+
 
 # 2.multi table inheritance eg:
 
@@ -78,20 +83,15 @@ class Createuser(APIView):#2 #waste
         # product = Product.objects.all().prefetch_related('book','cupboard')#both are situationally used 
 
 # 2.multi table inheritance eg:  ends
-# 
-#         
-class PostList(APIView):#2
+       
+############################################### search using posgres
+
+
+class PostList(APIView):#soln 2
 
     def get(self, request):
-        # product = Product.objects.all()
-        # a =product[0]
-        # print(a.book.publisher)#how the data is accessed 
-        # print(a.cupboard.shelves)#how the data is accessed 
-        #for in the case of front end the product is iterated 
-        # when iterating like this  product.book.publisher and product.cupboard.shelves more queries get executed inorder to reduce th query we use the 
-        #select related , crates a sql join
-        product = Product.objects.all().select_related('book','cupboard')#here in curent case select related has min query
-        product = Product.objects.all().prefetch_related('book','cupboard')#both are situationally used 
+        product = Mybook.objects.all().aggregate(newname=Sum("cost"))#we can override the na e also
+   
 
         print("posts")
         print(product)
