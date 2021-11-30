@@ -6,42 +6,42 @@ from django.urls import reverse
 from polymorphic.models import PolymorphicModel
 
 
-class Mybook(models.Model):
-    publisher = models.CharField(max_length=255)
-    author = models.CharField(max_length=255)
-    cost = models.BigIntegerField()
+# class Mybook(models.Model):
+#     publisher = models.CharField(max_length=255)
+#     author = models.CharField(max_length=255)
+#     cost = models.BigIntegerField()
 
-class Post(models.Model):
-    title = models.CharField(max_length=250)
-    comment = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
+# class Post(models.Model):
+#     title = models.CharField(max_length=250)
+#     comment = models.TextField()
+#     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
 
 
-    def __str__(self):
-        return self.title  
+#     def __str__(self):
+#         return self.title  
 
 
 ###############orm explore
 
 
-class Teacher(models.Model):
+# class Teacher(models.Model):
       
-    firstname = models.CharField(max_length=100)
-    surname = models.CharField(max_length=100)
+#     firstname = models.CharField(max_length=100)
+#     surname = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.firstname
+#     def __str__(self):
+#         return self.firstname
 
-class Student(models.Model):
+# class Student(models.Model):
       
-    firstname = models.CharField(max_length=100)
-    surname = models.CharField(max_length=100)
-    age = models.IntegerField()
-    classroom = models.IntegerField()
-    teacher = models.CharField(max_length=100)
+#     firstname = models.CharField(max_length=100)
+#     surname = models.CharField(max_length=100)
+#     age = models.IntegerField()
+#     classroom = models.IntegerField()
+#     teacher = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.firstname  
+#     def __str__(self):
+#         return self.firstname  
 
 
 
@@ -170,6 +170,19 @@ class Student(models.Model):
 # class Cupboard(Product):
 #     shelves = models.IntegerField()
 #     author = models.CharField(max_length=255)
+
+#######################soln 4 ends
+
+
+###############3model for search explore  
+
+
+class Book(models.Model):#when look in admin can see the fileds of products also and can add data
+    title = models.CharField(max_length=255)
+    authors = models.CharField(max_length=255)
+
+
+
 
 
 

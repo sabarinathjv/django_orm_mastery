@@ -1,6 +1,6 @@
 from django.db import connection
 from rest_framework import generics
-from .models import Post , Student , Teacher ,Mybook
+from .models import *
 from .serializers import PostSerializer , UserSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authentication import TokenAuthentication

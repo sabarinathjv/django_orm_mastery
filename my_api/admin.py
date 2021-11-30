@@ -1,5 +1,5 @@
-# from django.contrib import admin
-# from .models import *
+from django.contrib import admin
+from .models import *
 
 
 # admin.site.register(Post)
@@ -43,9 +43,10 @@ class ProductAdmin(ModelAChildAdmin):
 class ProductAdmin(PolymorphicParentModelAdmin):
     base_model = Product  # Optional, explicitly set here.
     child_models = (Book, Cupboard)
+###############soln4 ends
 
 
+admin.site.register(Book)
 
-admin.site.register(Mybook)
 
 
