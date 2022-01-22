@@ -98,6 +98,27 @@ class PostList(APIView):#soln 2
         print("posts")
         return Response("serializer.data", status=status.HTTP_201_CREATED)
 
+    
+    from django.db import transaction
+
+    #atomic transation
+    
+        form = Payment(request.POST)
+
+    if form.is_valid():
+      x = form.cleaned_data['payor']
+      y = form.cleaned_data['payee']
+      z = decimal.Decimal(form.cleaned_data['amount'])
+
+      payor = customer.objects.select_for_update().get(name=x)
+      payee = customer.objects.select_for_update().get(name=y)
+
+    with transaction.atomic():
+      payor.balance -= z
+      payor.save()
+
+      payee.balance += z
+      payee.save()
 
 
 
