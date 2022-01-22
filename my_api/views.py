@@ -101,8 +101,8 @@ class PostList(APIView):#soln 2
     
     from django.db import transaction
 
-    #atomic transation
-    
+    #atomic transation  1. @transaction.atomic
+    #if multiple rqsts are comming , lock the currecurrent operation , withot allooing the others to change the data
         form = Payment(request.POST)
 
     if form.is_valid():
